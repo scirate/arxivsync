@@ -55,7 +55,7 @@ module ArxivSync
 
       begin
         return @oai.list_records(params)
-      rescue Faraday::Error::TimeoutError
+      rescue Faraday::TimeoutError
         puts "Request timed out; retrying in 20 seconds".light_yellow
         sleep 20
         return retry_request

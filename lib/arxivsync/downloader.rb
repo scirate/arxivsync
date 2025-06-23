@@ -13,8 +13,8 @@ module ArxivSync
       end
       @last_params = nil
 
-      domain = ENV['ARXIV_EXPORT_DOMAIN'] || "export.arxiv.org"
-      @oai = OAI::Client.new("http://#{domain}/oai2")
+      domain = "oaipmh.arxiv.org"
+      @oai = OAI::Client.new("http://#{domain}/oai")
     end
 
     def start(&b)

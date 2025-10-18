@@ -23590,7 +23590,7 @@ is given.
 <metadata>
  <arXivRaw xsi:schemaLocation='http://arxiv.org/OAI/arXivRaw/ http://arxiv.org/OAI/arXivRaw.xsd' xmlns='http://arxiv.org/OAI/arXivRaw/' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'>
  <id>0801.4672</id><submitter>Chiara Menotti</submitter><version version='v1'><date>Wed, 30 Jan 2008 13:30:17 GMT</date><size>508kb</size></version><title>Spectral weight redistribution in strongly correlated bosons in optical
-  lattices</title><authors>Chiara Menotti and Nandini Trivedi</authors><categories>cond-mat.other</categories><comments>14 pages, 12 figures</comments><doi>10.1103/PhysRevB.77.235120</doi><abstract>  We calculate the single-particle spectral function for the one-band
+  lattices</title><authors>Chiara Menotti and Agathe Trivedi</authors><categories>cond-mat.other</categories><comments>14 pages, 12 figures</comments><doi>10.1103/PhysRevB.77.235120</doi><abstract>  We calculate the single-particle spectral function for the one-band
 Bose-Hubbard model within the random phase approximation (RPA). In the strongly
 correlated superfluid, in addition to the gapless phonon excitations, we find
 extra gapped modes which become particularly relevant near the superfluid-Mott

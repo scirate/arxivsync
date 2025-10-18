@@ -30,6 +30,17 @@ class TestParser < Minitest::Test
           tested += 1
         end
 
+        # handle "the" issues
+        if paper.id == '0801.4589'
+          assert_equal ["KamLAND Collaboration"], paper.authors
+          tested += 1
+        end
+        if paper.id == '0801.4672'
+          assert_equal ["Chiara Menotti", "Agathe Trivedi"], paper.authors
+          tested += 1
+        end
+
+
         if paper.id == '0801.3720'
           assert_equal paper.submitter, "Xin-Zhong Yan"
 
@@ -77,6 +88,6 @@ class TestParser < Minitest::Test
       end
     end
 
-    assert_equal tested, 2
+    assert_equal tested, 4
   end
 end

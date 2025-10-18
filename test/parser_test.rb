@@ -32,7 +32,7 @@ class TestParser < Minitest::Test
 
         # handle "the" issues
         if paper.id == '0801.4589'
-          assert_equal ["KamLAND Collaboration"], paper.authors
+          assert_equal ["The KamLAND Collaboration"], paper.authors
           tested += 1
         end
         if paper.id == '0801.4672'

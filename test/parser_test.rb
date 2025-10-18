@@ -39,6 +39,10 @@ class TestParser < Minitest::Test
           assert_equal ["Chiara Menotti", "Agathe Trivedi"], paper.authors
           tested += 1
         end
+        if paper.id == '0801.3724'
+          assert_equal ["Philippe thebault", "Yanqin Wu"], paper.authors
+          tested += 1
+        end
 
 
         if paper.id == '0801.3720'
@@ -88,6 +92,6 @@ class TestParser < Minitest::Test
       end
     end
 
-    assert_equal tested, 4
+    assert_equal tested, 5
   end
 end

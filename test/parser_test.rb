@@ -6,6 +6,39 @@ require 'arxivsync'
 TEST_ROOT = File.dirname(__FILE__)
 
 class TestParser < Minitest::Test
+  def setup
+    @parser = ArxivSync::XMLParser.new
+  end
+
+  def test_decode_preserves_inline_math
+    input = 'The state $U_H(T)$ has error $\varepsilon$.'
+
+    assert_equal input, @parser.decode(input)
+  end
+
+  def test_decode_preserves_display_math
+    input = <<~'TEX'.strip
+      using $$ O\left(
+        \alpha T+\frac{\log(1/\varepsilon)}
+        {\log(e+\log(1/\varepsilon)/(\alpha T))}
+        \right) $$ queries
+    TEX
+
+    assert_equal input.gsub(/\s+/, ' '), @parser.decode(input.gsub(/\s+/, ' '))
+  end
+
+  def test_decode_preserves_adjacent_display_and_inline_math
+    input = '$\varepsilon$ using $$\frac{\log(1/\varepsilon)}{\log(e+\log(1/\varepsilon)/(\alpha T))}$$ $\mathrm{HAM\mbox{-}T}$ queries'
+
+    assert_equal input, @parser.decode(input)
+  end
+
+  def test_decode_does_not_strip_unclosed_math
+    input = 'An unmatched $\frac{a}{b}'
+
+    assert_equal input, @parser.decode(input)
+  end
+
   def test_parser
     archive = ArxivSync::XMLArchive.new(File.join(TEST_ROOT, 'fixtures'))
     tested = 0

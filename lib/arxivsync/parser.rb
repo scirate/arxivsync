@@ -73,24 +73,38 @@ module ArxivSync
       # Process latex entities -- except inside equations
       decoded = ""
       equation = false
+      delimiter = nil
       segment = ""
-      str.chars do |ch|
-        if ch == '$' 
+      i = 0
+      while i < str.length
+        if str[i] == '$'
+          # Treat $$ as a single delimiter. Toggling on each individual $
+          # closes display math immediately, causing its contents to be
+          # passed through latex_decode and stripping grouping braces.
+          current_delimiter = str[i, 2] == '$$' ? '$$' : '$'
+
           if !equation
             decoded << latex_decode(segment)
-            segment = ch
-          else
-            decoded << segment + ch
+            segment = current_delimiter
+            delimiter = current_delimiter
+            equation = true
+          elsif current_delimiter == delimiter
+            decoded << segment + current_delimiter
             segment = ""
+            delimiter = nil
+            equation = false
+          else
+            segment << current_delimiter
           end
 
-          equation = !equation
+          i += current_delimiter.length
         else
-          segment << ch
+          segment << str[i]
+          i += 1
         end
       end
 
-      decoded << latex_decode(segment)
+      decoded << (equation ? segment : latex_decode(segment))
     end
 
     def text(str)
